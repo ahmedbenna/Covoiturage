@@ -6,13 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Reserver {
+public class Demande {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    String reponse;
 
+    @ManyToOne
+    @JoinColumn(name = "idPassager")
+    Passager passager;
 
     @ManyToOne
     @JoinColumn(name = "idPublication")
