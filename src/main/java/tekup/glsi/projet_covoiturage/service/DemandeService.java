@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.model.Demande;
-import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.repository.DemandeRepo;
 
 import java.util.List;
@@ -32,6 +31,7 @@ public class DemandeService {
     }
 
     public Demande addDemande(Demande demande){
+        demande.setReponse("");
         return demandeRepo.save(demande);
     }
 
@@ -52,16 +52,49 @@ public class DemandeService {
         return demandeRepo.save(demande);
     }
 
+    public List<Demande> getAllAcceptersConducteur(Long id){
+
+        List<Demande> demandes=demandeRepo.findByConducteur_IdAndReponse(id,"true");
+        return demandes;
+
+    }
+
+    public List<Demande> getAllRejeterConducter(Long id){
+
+        List<Demande> demandes=demandeRepo.findByConducteur_IdAndReponse(id,"false");
+        return demandes;
+
+    }
+
+    public List<Demande> getAllPendingConducter(Long id){
+
+        List<Demande> demandes=demandeRepo.findByConducteur_IdAndReponse(id,"");
+        return demandes;
+
+    }
+
+
+
+
+
+
     public List<Demande> getAllAcceptersPassager(Long id){
 
-        List<Demande> demandes=demandeRepo.findByPassager_IdAndAndReponse(id,"true");
+        List<Demande> demandes=demandeRepo.findByPassager_IdAndReponse(id,"true");
         return demandes;
 
     }
 
     public List<Demande> getAllRejeterPassager(Long id){
 
-        List<Demande> demandes=demandeRepo.findByPassager_IdAndAndReponse(id,"false");
+        List<Demande> demandes=demandeRepo.findByPassager_IdAndReponse(id,"false");
+        return demandes;
+
+    }
+
+    public List<Demande> getAllPendingPassager(Long id){
+
+        List<Demande> demandes=demandeRepo.findByPassager_IdAndReponse(id,"");
         return demandes;
 
     }

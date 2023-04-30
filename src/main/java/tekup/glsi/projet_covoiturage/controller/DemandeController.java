@@ -56,6 +56,27 @@ public class DemandeController {
 
     }*/
 
+    @GetMapping("/accepter/conducteur/{id}")
+    public List<Demande> getAllAcceptersConducteur(@PathVariable Long id){
+
+        return demanderService.getAllAcceptersConducteur(id);
+
+    }
+
+    @GetMapping("/rejeter/conducteur/{id}")
+    public List<Demande> getAllRejeterConducter(@PathVariable Long id){
+
+        return demanderService.getAllRejeterConducter(id);
+
+    }
+
+    @GetMapping("/pending/conducteur/{id}")
+    public List<Demande> getAllpendingConducter(@PathVariable Long id){
+        return demanderService.getAllPendingConducter(id);
+
+    }
+
+
     @GetMapping("/accepter/passager/{id}")
     public List<Demande> getAllAcceptersPassager(@PathVariable Long id){
 
@@ -67,6 +88,13 @@ public class DemandeController {
     public List<Demande> getAllRejeterPassager(@PathVariable Long id){
 
         return demanderService.getAllRejeterPassager(id);
+
+    }
+
+    @GetMapping("/pending/passager/{id}")
+    public List<Demande> getAllpendingPassager(@PathVariable Long id){
+
+        return demanderService.getAllPendingPassager(id);
 
     }
 

@@ -21,4 +21,8 @@ public class Demande {
     @ManyToOne
     @JoinColumn(name = "idPublication")
     Publication publication ;
+
+    @ManyToOne
+    @JoinColumn(name = "idConducteur")
+    Conducteur conducteur;
 }
