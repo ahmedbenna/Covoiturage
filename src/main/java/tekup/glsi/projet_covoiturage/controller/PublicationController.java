@@ -10,12 +10,13 @@ import tekup.glsi.projet_covoiturage.service.ConducteurService;
 import tekup.glsi.projet_covoiturage.service.PassagerService;
 import tekup.glsi.projet_covoiturage.service.PublicationService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/publication")
+@RequestMapping("/api/publication/")
 public class PublicationController {
 
     private PublicationService publicationService;
@@ -33,8 +34,19 @@ public class PublicationController {
     }
 
 
+    @GetMapping("conducteur/{id}")
+    public List<Publication> getAllConducteurPublication(Long id){
+        return publicationService.getAllConducteurPublication(id);
+    }
 
-    @PostMapping("/conducteur/{id}")
+    @GetMapping("disponible")
+    public List<Publication> getAllPublicationDispo(){
+        return publicationService.getAllPublicationDispo();
+    }
+
+
+
+    @PostMapping("conducteur/{id}")
     public Publication addPublication(@PathVariable Long id,@RequestBody Publication publication){
 
         return publicationService.addPublication(id,publication);

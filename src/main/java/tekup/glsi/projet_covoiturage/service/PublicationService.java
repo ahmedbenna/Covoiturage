@@ -11,6 +11,7 @@ import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.repository.PublicationRepo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,6 +25,16 @@ public class PublicationService {
     public List<Publication> getAllPublication(){
         return publicationRepo.findAll();
     }
+
+    public List<Publication> getAllConducteurPublication(Long id){
+        return publicationRepo.findAllByConducteur_Id(id);
+    }
+
+    public List<Publication> getAllPublicationDispo(){
+        return publicationRepo.findByDateDepartAfter(LocalDateTime.now());
+    }
+
+
 
     public Publication getPublicationById (Long id){
         return  publicationRepo.findById(id)
