@@ -17,4 +17,5 @@ public class Reserver {
     @ManyToOne
     @JoinColumn(name = "idPublication")
     Publication publication ;
+
 }

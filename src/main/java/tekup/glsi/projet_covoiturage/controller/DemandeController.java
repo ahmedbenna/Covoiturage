@@ -17,7 +17,8 @@ public class DemandeController {
     private DemandeService demanderService;
 
 
-    @GetMapping("/{id}") public Demande getDemandeById (@PathVariable Long id){
+    @GetMapping("/{id}")
+    public Demande getDemandeById (@PathVariable Long id){
         return  demanderService.getDemandeById(id);
     }
 
@@ -29,8 +30,24 @@ public class DemandeController {
     }
 
     @PostMapping("/add")
-    public Demande addDemande(Demande demande){
+    public Demande addDemande(@RequestBody Demande demande){
         return demanderService.addDemande(demande);
+    }
+
+
+    @PutMapping("/accepter/{id}")
+    public Demande accepterDemande(@PathVariable Long id){
+
+        return demanderService.accepterDemande(id);
+
+    }
+
+    @PutMapping("/rejeter/{id}")
+    public Demande rejeterDemande(@PathVariable Long id){
+
+
+        return demanderService.rejeterDemande(id);
+
     }
 
 /*    public Demande editDemande(Long id ,Demande demande){
@@ -39,9 +56,22 @@ public class DemandeController {
 
     }*/
 
+    @GetMapping("/accepter/passager/{id}")
+    public List<Demande> getAllAcceptersPassager(@PathVariable Long id){
+
+        return demanderService.getAllAcceptersPassager(id);
+
+    }
+
+    @GetMapping("/rejeter/passager/{id}")
+    public List<Demande> getAllRejeterPassager(@PathVariable Long id){
+
+        return demanderService.getAllRejeterPassager(id);
+
+    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteDemande (Long id){
+    public ResponseEntity<?> deleteDemande (@PathVariable Long id){
         return demanderService.deleteDemande(id);
     }
 
