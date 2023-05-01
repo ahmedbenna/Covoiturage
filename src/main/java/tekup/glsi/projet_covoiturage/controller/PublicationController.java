@@ -35,7 +35,7 @@ public class PublicationController {
 
 
     @GetMapping("conducteur/{id}")
-    public List<Publication> getAllConducteurPublication(Long id){
+    public List<Publication> getAllConducteurPublication(@PathVariable Long id){
         return publicationService.getAllConducteurPublication(id);
     }
 

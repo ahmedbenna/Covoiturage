@@ -52,6 +52,13 @@ public class DemandeService {
         return demandeRepo.save(demande);
     }
 
+    public List<Demande> getAllDemandeByPublication(Long id){
+
+        List<Demande> demandes=demandeRepo.findAllByPublication_Id(id);
+        return demandes;
+
+    }
+
     public List<Demande> getAllAcceptersConducteur(Long id){
 
         List<Demande> demandes=demandeRepo.findByConducteur_IdAndReponse(id,"true");

@@ -56,6 +56,13 @@ public class DemandeController {
 
     }*/
 
+    @GetMapping("/publication/{id}")
+    public List<Demande> getAllDemandeByPublication(@PathVariable Long id){
+
+        return demanderService.getAllDemandeByPublication(id);
+
+    }
+
     @GetMapping("/accepter/conducteur/{id}")
     public List<Demande> getAllAcceptersConducteur(@PathVariable Long id){
 
