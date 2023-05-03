@@ -3,11 +3,7 @@ package tekup.glsi.projet_covoiturage.service;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
-import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.repository.PublicationRepo;
 

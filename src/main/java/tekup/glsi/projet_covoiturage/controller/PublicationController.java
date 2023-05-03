@@ -3,14 +3,9 @@ package tekup.glsi.projet_covoiturage.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tekup.glsi.projet_covoiturage.model.Conducteur;
 import tekup.glsi.projet_covoiturage.model.Publication;
-import tekup.glsi.projet_covoiturage.repository.PublicationRepo;
-import tekup.glsi.projet_covoiturage.service.ConducteurService;
-import tekup.glsi.projet_covoiturage.service.PassagerService;
 import tekup.glsi.projet_covoiturage.service.PublicationService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin

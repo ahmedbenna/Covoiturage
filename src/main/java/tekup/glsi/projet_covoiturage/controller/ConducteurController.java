@@ -3,6 +3,7 @@ package tekup.glsi.projet_covoiturage.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tekup.glsi.projet_covoiturage.dto.Auth;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
 import tekup.glsi.projet_covoiturage.service.ConducteurService;
 
@@ -35,6 +36,13 @@ public class ConducteurController {
     public Conducteur editConducteur(@PathVariable Long id,
                                      @RequestBody Conducteur conducteur){
         return conducteurService.editConducteur(id,conducteur);
+
+    }
+
+    @PostMapping("auth")
+    public Conducteur authenticateConducteur(@RequestBody Auth auth)
+    {
+        return conducteurService.authenticateConducteur(auth);
 
     }
 

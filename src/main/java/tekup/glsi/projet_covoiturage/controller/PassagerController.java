@@ -3,6 +3,7 @@ package tekup.glsi.projet_covoiturage.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tekup.glsi.projet_covoiturage.dto.Auth;
 import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.service.PassagerService;
 
@@ -39,6 +40,12 @@ public class PassagerController {
 
         return passagerService.editClient(id,passager);
 
+    }
+
+    @PostMapping("auth")
+    public Passager authenticatePassager(@RequestBody Auth auth)
+    {
+        return passagerService.authenticatePassager(auth);
     }
 
 

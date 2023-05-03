@@ -4,6 +4,7 @@ package tekup.glsi.projet_covoiturage.service;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import tekup.glsi.projet_covoiturage.dto.Auth;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
 import tekup.glsi.projet_covoiturage.repository.ConducteurRepo;
 import tekup.glsi.projet_covoiturage.repository.PassagerRepo;
@@ -61,24 +62,24 @@ public class ConducteurService {
         }
     }*/
 
-   /* public Conducteur authenticateConducteur(Auth auth)
+   public Conducteur authenticateConducteur(Auth auth)
     {
-        Conducteur client = getProviderByEmail(auth.getEmail());
+        Conducteur conducteur = getConducteurByEmail(auth.getEmail());
         boolean isAuthenticated = false;
-        if(client !=null)
+        if(conducteur !=null)
         {
-            if(client.getPassword().equals(auth.getPassword()))
+            if(conducteur.getPassword().equals(auth.getPassword()))
             {
                 isAuthenticated = true;
             }
 
         }
         if(isAuthenticated)
-            return client;
+            return conducteur;
         else
             throw new IllegalArgumentException(" password not valid");
 
-    }*/
+    }
 
     public ResponseEntity<?> deleteConducteur (Long id){
         conducteurRepo.deleteById(id);

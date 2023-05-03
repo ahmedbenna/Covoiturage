@@ -1,6 +1,7 @@
 package tekup.glsi.projet_covoiturage.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,4 +25,12 @@ public class Conducteur extends User{
 
 
     private String adresse;
+
+
+    private double note;
+    @JsonIgnore
+    private int numbNote;
+
+
+
 }
