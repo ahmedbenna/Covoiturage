@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PublicationRepo extends JpaRepository<Publication, Long> {
 
-    List<Publication> findByDateDepartAfter(LocalDateTime departTimeAfter);
+    List<Publication> findByDateDepartAfterAndNbrePlaceGreaterThan(LocalDateTime departTimeAfter,int nbre);
 
     List<Publication> findAllByConducteur_Id(Long id);
 

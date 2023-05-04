@@ -27,7 +27,7 @@ public class PublicationService {
     }
 
     public List<Publication> getAllPublicationDispo(){
-        return publicationRepo.findByDateDepartAfter(LocalDateTime.now());
+        return publicationRepo.findByDateDepartAfterAndNbrePlaceGreaterThan(LocalDateTime.now(),0);
     }
 
 

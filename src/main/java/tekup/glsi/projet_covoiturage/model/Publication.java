@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,10 +18,12 @@ public class Publication {
 
     
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
+    @Future(message = "To must be at a future date")
     private LocalDateTime dateDepart;
     private String lieuDepart;
     private String lieuArrive;
 
+    @Min(value = 1, message = "To must be greater than zero")
     private int nbrePlace;
     private float prix;
 

@@ -3,7 +3,9 @@ package tekup.glsi.projet_covoiturage.service;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import tekup.glsi.projet_covoiturage.model.Conducteur;
 import tekup.glsi.projet_covoiturage.model.Demande;
+import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.repository.DemandeRepo;
 
 import java.util.List;
@@ -38,9 +40,17 @@ public class DemandeService {
     public Demande accepterDemande(Long id){
 
         Demande demande =getDemandeById(id);
-        demande.setReponse("true");
+        Publication publication =publicationService.getPublicationById(demande.getPublication().getId());
+        if (publication.getNbrePlace()>0) {
+            demande.setReponse("true");
+            publication.setNbrePlace(publication.getNbrePlace()-1);
+            publicationService.editPublication(publication.getId(), publication);
+            return demandeRepo.save(demande);
+        }
+        else {
+            throw new RuntimeException("nombre de place est atteint");
+        }
 
-        return demandeRepo.save(demande);
 
     }
 

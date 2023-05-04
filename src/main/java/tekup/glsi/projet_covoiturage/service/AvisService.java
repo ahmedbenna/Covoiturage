@@ -59,8 +59,6 @@ public class AvisService {
 
 
 
-
-
     public ResponseEntity<?> deleteAvis (Long id){
         avisRepo.deleteById(id);
         return ResponseEntity.ok().build();
