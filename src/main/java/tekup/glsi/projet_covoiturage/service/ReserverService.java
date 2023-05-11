@@ -2,7 +2,6 @@ package tekup.glsi.projet_covoiturage.service;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.model.Reserver;
 import tekup.glsi.projet_covoiturage.repository.ReserverRepo;
 

@@ -38,11 +38,8 @@ public class PublicationService {
         List<Publication> publicationList=new ArrayList<>();
 
         for (Publication publication: publications) {
-            String a= publication.getLieuDepart().toLowerCase();
-            String b=publication.getLieuArrive().toLowerCase();
-
-            if ((publication.getLieuDepart().equalsIgnoreCase(LieuD)) ||
-                    (publication.getLieuArrive().equalsIgnoreCase(LieuA))) {
+            if ((LieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ||
+                    (LieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
 
                 publicationList.add(publication);
             }
