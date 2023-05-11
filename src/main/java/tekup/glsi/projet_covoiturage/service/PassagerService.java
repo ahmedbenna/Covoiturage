@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.dto.Auth;
+import tekup.glsi.projet_covoiturage.dto.NewPassword;
 import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.repository.PassagerRepo;
 
@@ -51,11 +52,11 @@ public class PassagerService {
 
     }
 
- /*   public Client editPasswordClient(Long idClient, PasswordInfo passwordInfo){
-        Client client=getClientById(idClient);
-        if (client.getPassword().equals(passwordInfo.getPassword())){
-            client.setPassword(passwordInfo.getNewPassword());
-            try {
+    public Passager editPasswordPassager(Long id, NewPassword newPassword){
+        Passager passager =getPassagerById(id);
+        if (passager.getPassword().equals(newPassword.getPassword())){
+            passager.setPassword(newPassword.getNewPassword());
+            /*try {
                 this.mailSenderService.send(client.getEmail(),
                         "Modfication de mot de passe  ",
                         "Bonjour,<br>\n " +
@@ -65,13 +66,13 @@ public class PassagerService {
 
             } catch (MessagingException e) {
                 e.printStackTrace();
-            }
-            return clientRepo.save(client);
+            }*/
+            return passagerRepo.save(passager);
         }
         else {
             throw new RuntimeException("password not valid");
         }
-    }*/
+    }
 
     public Passager authenticatePassager(Auth auth)
     {

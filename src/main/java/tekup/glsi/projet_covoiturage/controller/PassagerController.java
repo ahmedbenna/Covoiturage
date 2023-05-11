@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tekup.glsi.projet_covoiturage.dto.Auth;
+import tekup.glsi.projet_covoiturage.dto.NewPassword;
 import tekup.glsi.projet_covoiturage.model.Passager;
 import tekup.glsi.projet_covoiturage.service.PassagerService;
 
@@ -47,6 +48,12 @@ public class PassagerController {
     {
         return passagerService.authenticatePassager(auth);
     }
+
+    @PutMapping("/{id}/password")
+    public Passager editPasswordPassager(@PathVariable Long id, @RequestBody NewPassword newPassword){
+
+            return passagerService.editPasswordPassager(id, newPassword);
+        }
 
 
     @DeleteMapping("{id}")

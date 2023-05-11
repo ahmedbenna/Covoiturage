@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.dto.Auth;
+import tekup.glsi.projet_covoiturage.dto.NewPassword;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
 import tekup.glsi.projet_covoiturage.repository.ConducteurRepo;
-import tekup.glsi.projet_covoiturage.repository.PassagerRepo;
 
 import java.util.List;
 
@@ -51,16 +51,16 @@ public class ConducteurService {
 
     }
 
-  /*  public Client editPasswordClient(Long idClient, PasswordInfo passwordInfo){
-        Client client=getClientById(idClient);
-        if (client.getPassword().equals(passwordInfo.getPassword())){
-            client.setPassword(passwordInfo.getNewPassword());
-            return clientRepo.save(client);
+    public Conducteur editPasswordConducteur(Long id, NewPassword newPassword){
+        Conducteur conducteur =getConducteurById(id);
+        if (conducteur.getPassword().equals(newPassword.getPassword())){
+            conducteur.setPassword(newPassword.getNewPassword());
+            return conducteurRepo.save(conducteur);
         }
         else {
             throw new RuntimeException("password not valid");
         }
-    }*/
+    }
 
    public Conducteur authenticateConducteur(Auth auth)
     {

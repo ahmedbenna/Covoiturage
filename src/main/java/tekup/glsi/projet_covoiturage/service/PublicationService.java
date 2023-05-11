@@ -32,14 +32,21 @@ public class PublicationService {
     }
 
 
-    public List<Publication> getAllPublicationDispoLieu(String LieuD,String LieuA) {
+    public List<Publication> getAllPublicationDispoLieu(String lieuD, String lieuA) {
 
         List<Publication> publications=getAllPublicationDispo();
         List<Publication> publicationList=new ArrayList<>();
 
         for (Publication publication: publications) {
-            if ((LieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ||
-                    (LieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
+
+            if ((lieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ||
+                    (lieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
+
+                publicationList.add(publication);
+            }
+
+            if ((publication.getLieuDepart().toLowerCase()).contains(lieuD.toLowerCase()) ||
+                    (publication.getLieuArrive().toLowerCase().contains(lieuA.toLowerCase()))) {
 
                 publicationList.add(publication);
             }
