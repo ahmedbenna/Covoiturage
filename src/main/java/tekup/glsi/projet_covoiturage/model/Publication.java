@@ -21,8 +21,14 @@ public class Publication {
     @Future(message = "To must be at a future date")
     private LocalDateTime dateDepart;
     private String lieuDepart;
+
+    private String xD;
+    private String yD;
+
     private String lieuArrive;
 
+    private String xA;
+    private String yA;
     @Min(value = 1, message = "To must be greater than zero")
     private int nbrePlace;
     private float prix;

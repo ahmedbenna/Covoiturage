@@ -8,6 +8,7 @@ import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.repository.PublicationRepo;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +32,23 @@ public class PublicationService {
     }
 
 
+    public List<Publication> getAllPublicationDispoLieu(String LieuD,String LieuA) {
+
+        List<Publication> publications=getAllPublicationDispo();
+        List<Publication> publicationList=new ArrayList<>();
+
+        for (Publication publication: publications) {
+            String a= publication.getLieuDepart().toLowerCase();
+            String b=publication.getLieuArrive().toLowerCase();
+
+            if ((publication.getLieuDepart().equalsIgnoreCase(LieuD)) ||
+                    (publication.getLieuArrive().equalsIgnoreCase(LieuA))) {
+
+                publicationList.add(publication);
+            }
+        }
+        return publicationList;
+    }
 
     public Publication getPublicationById (Long id){
         return  publicationRepo.findById(id)

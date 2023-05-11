@@ -20,11 +20,12 @@ public class Conducteur extends User{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDeNaissance;
 
-    @Column(name = "telephone", nullable = false,unique = true)
+    @Column( nullable = false,unique = true)
     private Integer telephone;
 
 
     private String adresse;
+
 
 
     private double note;

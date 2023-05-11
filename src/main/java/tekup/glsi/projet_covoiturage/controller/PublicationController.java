@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tekup.glsi.projet_covoiturage.model.Publication;
 import tekup.glsi.projet_covoiturage.service.PublicationService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -32,6 +33,13 @@ public class PublicationController {
     @GetMapping("conducteur/{id}")
     public List<Publication> getAllConducteurPublication(@PathVariable Long id){
         return publicationService.getAllConducteurPublication(id);
+    }
+
+    @GetMapping("recherche")
+    public List<Publication> getAllPublicationDispoLieu(@RequestParam String LieuD,
+                                                        @RequestParam String LieuA) {
+
+        return publicationService.getAllPublicationDispoLieu(LieuD,LieuA);
     }
 
     @GetMapping("disponible")
