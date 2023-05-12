@@ -36,8 +36,5 @@ public class Conducteur extends User{
     private int numbNote;
 
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
-            @JsonIgnore
-    Set<Publication> publications=new HashSet<Publication>();
 
 }

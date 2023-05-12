@@ -12,6 +12,5 @@ public interface PublicationRepo extends JpaRepository<Publication, Long> {
 
     List<Publication> findAllByConducteur_Id(Long id);
 
-    List<Publication> findByLieuDepartContainsIgnoreCaseOrLieuArriveContainsIgnoreCase(String a,String b);
 
 }

@@ -5,7 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.dto.Auth;
 import tekup.glsi.projet_covoiturage.dto.NewPassword;
+import tekup.glsi.projet_covoiturage.model.Avis;
+import tekup.glsi.projet_covoiturage.model.Demande;
 import tekup.glsi.projet_covoiturage.model.Passager;
+import tekup.glsi.projet_covoiturage.repository.AvisRepo;
+import tekup.glsi.projet_covoiturage.repository.DemandeRepo;
 import tekup.glsi.projet_covoiturage.repository.PassagerRepo;
 
 import java.util.List;
@@ -16,6 +20,10 @@ public class PassagerService {
 
 
     private PassagerRepo passagerRepo;
+
+    private DemandeRepo demandeRepo;
+
+    private AvisRepo avisRepo;
 
 
     public Passager getPassagerById (Long id){
@@ -94,6 +102,17 @@ public class PassagerService {
     }
 
     public ResponseEntity<?> deletePassager (Long id){
+
+        List<Demande> demandes=demandeRepo.findByPassager_Id(id);
+        for (Demande demande: demandes) {
+            demandeRepo.deleteById(demande.getId());
+        }
+
+        List< Avis> avisList =avisRepo.findAllByPassager_Id(id);
+        for (Avis avis: avisList) {
+            avisRepo.deleteById(avis.getId());
+        }
+
         passagerRepo.deleteById(id);
         return ResponseEntity.ok().build();
     }

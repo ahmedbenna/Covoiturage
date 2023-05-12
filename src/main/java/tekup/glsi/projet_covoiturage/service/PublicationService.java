@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
+import tekup.glsi.projet_covoiturage.model.Demande;
 import tekup.glsi.projet_covoiturage.model.Publication;
+import tekup.glsi.projet_covoiturage.repository.DemandeRepo;
 import tekup.glsi.projet_covoiturage.repository.PublicationRepo;
 
 import java.time.LocalDateTime;
@@ -17,6 +19,8 @@ public class PublicationService {
 
     private PublicationRepo publicationRepo;
     private ConducteurService conducteurService;
+
+    private DemandeRepo demandeRepo;
 
 
     public List<Publication> getAllPublication(){
@@ -123,10 +127,12 @@ public class PublicationService {
     }
 
 
-
-
-
     public ResponseEntity<?> deletePublication (Long id){
+
+       List< Demande> demandes=demandeRepo.findAllByPublication_Id(id);
+        for (Demande demande: demandes) {
+            demandeRepo.deleteById(demande.getId());
+       }
         publicationRepo.deleteById(id);
         return ResponseEntity.ok().build();
     }

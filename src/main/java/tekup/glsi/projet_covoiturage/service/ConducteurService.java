@@ -6,8 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tekup.glsi.projet_covoiturage.dto.Auth;
 import tekup.glsi.projet_covoiturage.dto.NewPassword;
+import tekup.glsi.projet_covoiturage.model.Avis;
 import tekup.glsi.projet_covoiturage.model.Conducteur;
-import tekup.glsi.projet_covoiturage.repository.ConducteurRepo;
+import tekup.glsi.projet_covoiturage.model.Demande;
+import tekup.glsi.projet_covoiturage.model.Publication;
+import tekup.glsi.projet_covoiturage.repository.*;
 
 import java.util.List;
 
@@ -16,6 +19,10 @@ import java.util.List;
 public class ConducteurService {
 
     private ConducteurRepo conducteurRepo ;
+
+    private DemandeRepo demandeRepo;
+    private PublicationRepo publicationRepo;
+    private AvisRepo avisRepo;
 
     public Conducteur getConducteurById (Long id){
         return  conducteurRepo.findById(id)
@@ -82,6 +89,22 @@ public class ConducteurService {
     }
 
     public ResponseEntity<?> deleteConducteur (Long id){
+
+        List<Demande> demandes=demandeRepo.findByConducteur_Id(id);
+        for (Demande demande: demandes) {
+            demandeRepo.deleteById(demande.getId());
+        }
+
+        List<Publication> publications=publicationRepo.findAllByConducteur_Id(id);
+        for (Publication publication : publications) {
+            publicationRepo.deleteById(publication.getId());
+        }
+
+        List<Avis> avisList =avisRepo.findAllByConducteur_Id(id);
+        for (Avis avis: avisList) {
+            avisRepo.deleteById(avis.getId());
+        }
+
         conducteurRepo.deleteById(id);
         return ResponseEntity.ok().build();
     }
