@@ -37,20 +37,61 @@ public class PublicationService {
         List<Publication> publications=getAllPublicationDispo();
         List<Publication> publicationList=new ArrayList<>();
 
-        for (Publication publication: publications) {
+        if (lieuD.equals("")&&lieuA.equals("")) {
+            return publicationList;
+        }
+        else if (lieuD.equals("")){
 
-            if ((lieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ||
-                    (lieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
+            for (Publication publication : publications) {
 
-                publicationList.add(publication);
+                if ((lieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
+
+                    publicationList.add(publication);
+                }
+
+                if ((publication.getLieuArrive().toLowerCase().contains(lieuA.toLowerCase()))) {
+
+                    publicationList.add(publication);
+                }
             }
 
-            if ((publication.getLieuDepart().toLowerCase()).contains(lieuD.toLowerCase()) ||
-                    (publication.getLieuArrive().toLowerCase().contains(lieuA.toLowerCase()))) {
+            return publicationList;
 
-                publicationList.add(publication);
+        }
+        else if (lieuA.equals("")){
+            for (Publication publication : publications) {
+
+                if ((lieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ) {
+
+                    publicationList.add(publication);
+                }
+
+                if ((publication.getLieuDepart().toLowerCase()).contains(lieuD.toLowerCase()) ) {
+
+                    publicationList.add(publication);
+                }
+            }
+
+
+        }
+
+        else {
+            for (Publication publication : publications) {
+
+                if ((lieuD.toLowerCase().contains(publication.getLieuDepart().toLowerCase())) ||
+                        (lieuA.toLowerCase().contains(publication.getLieuArrive().toLowerCase()))) {
+
+                    publicationList.add(publication);
+                }
+
+                if ((publication.getLieuDepart().toLowerCase()).contains(lieuD.toLowerCase()) ||
+                        (publication.getLieuArrive().toLowerCase().contains(lieuA.toLowerCase()))) {
+
+                    publicationList.add(publication);
+                }
             }
         }
+
         return publicationList;
     }
 
